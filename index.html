@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delta Executor Mobile</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --header-bg: #1e1e1e;
+      --highlight: #00ccff;
+      --script-bg: #1b1b1b;
+      --btn-bg: #00ccff;
+      --btn-hover: #009ec2;
+      --copy-btn: #ffcc00;
+      --copy-hover: #e6b800;
+    }
+
+    body.light {
+      --bg-color: #f9f9f9;
+      --text-color: #121212;
+      --header-bg: #e0e0e0;
+      --highlight: #0077cc;
+      --script-bg: #f0f0f0;
+      --btn-bg: #0077cc;
+      --btn-hover: #005fa3;
+      --copy-btn: #ffcc00;
+      --copy-hover: #e6b800;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: var(--header-bg);
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--highlight);
+      font-size: 2rem;
+    }
+
+    header p {
+      color: var(--text-color);
+    }
+
+    .toggle-theme {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: 2px solid var(--highlight);
+      color: var(--highlight);
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .section {
+      padding: 30px 20px;
+      border-bottom: 1px solid #333;
+    }
+
+    .section h2 {
+      color: var(--highlight);
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px 10px 0 0;
+      padding: 12px 20px;
+      background-color: var(--btn-bg);
+      color: #000;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--btn-hover);
+      transform: scale(1.05);
+    }
+
+    .copy-btn {
+      background-color: var(--copy-btn);
+    }
+
+    .copy-btn:hover {
+      background-color: var(--copy-hover);
+    }
+
+    .script-box {
+      background-color: var(--script-bg);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: transform 0.2s;
+    }
+
+    .script-box:hover {
+      transform: scale(1.02);
+    }
+
+    .script-box code {
+      display: block;
+      background: #2a2a2a;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      overflow-x: auto;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      background-color: var(--header-bg);
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
+
+  <header>
+    <h1>Delta Executor Mobile</h1>
+    <p>Works on Android & iOS – Updated 2025</p>
+  </header>
+
+  <section class="section">
+    <h2>📥 Download Delta Executor</h2>
+    <p>Select your platform to begin the download:</p>
+    <a href="https://appslocked.com/cl/i/37m7xn" class="btn">Android</a>
+    <a href="https://appslocked.com/cl/i/37m7xn" class="btn">iOS</a>
+  </section>
+
+  <section class="section" id="keys-section">
+    <h2>🔑 Unlock Keys</h2>
+    <p>Tap to copy the key and unlock access:</p>
+  </section>
+
+  <section class="section" id="scripts-section">
+    <h2>📜 Roblox Scripts</h2>
+    <p>Tap to copy a working script and unlock it:</p>
+  </section>
+
+  <div class="footer">
+    &copy; 2025 Delta Executor Mobile. All rights reserved.
+  </div>
+
+  <script>
+    const keys = [
+      { title: 'Fruit Raccoon Key', value: 'FRKEY-123-456' },
+      { title: 'Rainbow Obby Key', value: 'RBOBBY-2025-KEY' },
+      { title: 'Blox Fruits Key', value: 'BFROOT-777-XYZ' }
+    ];
+
+    const scripts = [
+      {
+        title: 'Auto Farm (Blox Fruits)',
+        value: 'loadstring(game:HttpGet("https://bloxfruitauto.com/script.lua"))()'
+      },
+      {
+        title: 'Infinite Jump',
+        value: 'game.Players.LocalPlayer.Character.Humanoid.JumpPower = 250'
+      },
+      {
+        title: 'ESP Script',
+        value: 'loadstring(game:HttpGet("https://esp4u.com/esp.lua"))()'
+      }
+    ];
+
+    const keysSection = document.getElementById('keys-section');
+    const scriptsSection = document.getElementById('scripts-section');
+
+    keys.forEach(item => {
+      const box = document.createElement('div');
+      box.className = 'script-box';
+      box.innerHTML = `
+        <p><strong>${item.title}</strong></p>
+        <code>${item.value}</code>
+        <button class="btn copy-btn" onclick="copyAndRedirect('${item.value}')">Copy & Unlock</button>
+      `;
+      keysSection.appendChild(box);
+    });
+
+    scripts.forEach(item => {
+      const box = document.createElement('div');
+      box.className = 'script-box';
+      box.innerHTML = `
+        <p><strong>${item.title}</strong></p>
+        <code>${item.value}</code>
+        <button class="btn copy-btn" onclick="copyAndRedirect('${item.value}')">Copy & Unlock</button>
+      `;
+      scriptsSection.appendChild(box);
+    });
+
+    function copyAndRedirect(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        window.location.href = "https://appslocked.com/cl/i/37m7xn";
+      }).catch(err => {
+        alert("Failed to copy text: " + err);
+      });
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+  </script>
+</body>
+</html>
